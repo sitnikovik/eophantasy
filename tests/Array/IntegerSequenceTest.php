@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Eophantasy package.
+ *
+ * (c) Ilya Sitnikov <sitnikovik@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Eophantasy\Types\Tests\Array;
 
 use Eophantasy\Types\Array\IntegerSequence;
@@ -47,6 +56,80 @@ class IntegerSequenceTest extends TestCase
                 new IntegerValue(3)
             ))->count()
         );
+    }
+
+    /**
+     * Tests the add method.
+     * 
+     * @return void
+     * @covers IntegerSequence::add
+     */
+    public function testAdd(): void
+    {
+        $a = new IntegerSequence(
+            new IntegerValue(1),
+            new IntegerValue(2),
+            new IntegerValue(3)
+        );
+        $b = $a->add(new IntegerValue(4));
+
+        $this->assertNotEquals($a, $b);
+        $this->assertNotSame($a, $b);
+        $this->assertEquals(
+            new IntegerSequence(
+                new IntegerValue(1),
+                new IntegerValue(2),
+                new IntegerValue(3),
+                new IntegerValue(4)
+            ),
+            $b
+        );
+    }
+
+    /**
+     * Tests the remove method.
+     * 
+     * @return void
+     * @covers IntegerSequence::remove
+     */
+    public function testRemove(): void
+    {
+        $a = new IntegerSequence(
+            new IntegerValue(1),
+            new IntegerValue(2),
+            new IntegerValue(3)
+        );
+        $b = $a->remove(new IntegerValue(2));
+
+        $this->assertNotEquals($a, $b);
+        $this->assertNotSame($a, $b);
+        $this->assertEquals(
+            new IntegerSequence(
+                new IntegerValue(1),
+                new IntegerValue(3)
+            ),
+            $b
+        );
+    }
+
+    /**
+     * Tests the has method.
+     * 
+     * @return void
+     * @covers IntegerSequence::has
+     */
+    public function testHas(): void 
+    {
+        $a = new IntegerSequence(
+            new IntegerValue(1),
+            new IntegerValue(2),
+            new IntegerValue(3)
+        );
+
+        $this->assertTrue($a->has(new IntegerValue(1)));
+        $this->assertTrue($a->has(new IntegerValue(2)));
+        $this->assertTrue($a->has(new IntegerValue(3)));
+        $this->assertFalse($a->has(new IntegerValue(4)));
     }
 
     /**

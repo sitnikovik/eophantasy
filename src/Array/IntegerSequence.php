@@ -31,12 +31,71 @@ class IntegerSequence implements Countable, Iterator
      */
     private $items;
 
+    /**
+     * Creates a new IntegerSequence instance.
+     * 
+     * @param IntegerValue ...$integerValues The integer values.
+     */
     public function __construct(IntegerValue ...$integerValues)
     {
         $this->items = $integerValues;
     }
 
         /**
+     * Adds integers to the sequence and returns the new sequence.
+     * 
+     * @param IntegerValue ...$integerValues The integer to add.
+     * @return IntegerSequence The new sequence.
+     */
+    public function add(IntegerValue ...$integerValues): IntegerSequence
+    {
+        $items = $this->items;
+        foreach ($integerValues as $integer) {
+            $items[] = $integer;
+        }
+
+        return new IntegerSequence(...$items);
+    }
+
+    /**
+     * Searches and removes each provided integers from the sequence and returns the new sequence.
+     * 
+     * @param IntegerValue ...$integerValues The integer to remove.
+     * @return IntegerSequence The new sequence.
+     */
+    public function remove(IntegerValue ...$integerValues): IntegerSequence
+    {
+        $items = $this->items;
+        foreach ($this->items as $i => $item) {
+            foreach ($integerValues as $integer) {
+                if ($item->equals($integer)) {
+                    unset($items[$i]);
+                    break;
+                }
+            }
+        }
+  
+        return new IntegerSequence(...$items);
+    }
+
+    /**
+     * Checks if the sequence has the provided integer.
+     * 
+     * @param IntegerValue $integer The integer to check.
+     * @return bool
+     */
+    public function has(IntegerValue $integer): bool
+    {
+        foreach ($this->items as $item) {
+            if ($item->equals($integer)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Counts the number of items in the sequence.
      * 
      * @return int
@@ -49,9 +108,9 @@ class IntegerSequence implements Countable, Iterator
     /**
      * Returns the current item.
      * 
-     * @return mixed
+     * @return IntegerValue
      */
-    public function current(): mixed
+    public function current(): IntegerValue
     {
         return current($this->items);
     }
