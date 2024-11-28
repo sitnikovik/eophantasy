@@ -11,7 +11,7 @@
 
 namespace Eophantasy\Types\Integer;
 
-use InvalidArgumentException;
+use DivisionByZeroError;
 
 /**
  * A class representing an integer.
@@ -75,12 +75,12 @@ class IntegerValue
      * 
      * @param IntegerValue $integer The integer to divide.
      * @return IntegerValue The new integer.
-     * @throws InvalidArgumentException If the provided integer is zero.
+     * @throws DivisionByZeroError
      */
     public function divide(IntegerValue $integer): IntegerValue
     {
         if ($integer->value === 0) {
-            throw new InvalidArgumentException('Cannot divide by zero.');
+            throw new DivisionByZeroError();
         }
 
         return new IntegerValue($this->value / $integer->value);

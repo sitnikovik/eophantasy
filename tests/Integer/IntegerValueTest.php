@@ -11,9 +11,9 @@
 
 namespace Eophantasy\Types\Tests\Integer;
 
+use DivisionByZeroError;
 use Eophantasy\Types\Integer\IntegerValue;
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
 
 /**
  * A class for testing the IntegerValue class.
@@ -21,9 +21,24 @@ use InvalidArgumentException;
 class IntegerValueTest extends TestCase
 {
     /**
+     * Tests the construct method.
+     * 
+     * @return void
+     * @covers IntegerValue::__construct
+     */
+    public function testConstruct(): void
+    {
+        $this->assertInstanceOf(
+            IntegerValue::class,
+            new IntegerValue(5)
+        );
+    }
+
+    /**
      * Tests the sum method.
      * 
      * @return void
+     * @covers IntegerValue::sum
      */
     public function testSum(): void
     {
@@ -38,6 +53,7 @@ class IntegerValueTest extends TestCase
      * Tests the subtract method.
      * 
      * @return void
+     * @covers IntegerValue::subtract
      */
     public function testSubtract(): void
     {
@@ -52,6 +68,7 @@ class IntegerValueTest extends TestCase
      * Tests the multiply method.
      * 
      * @return void
+     * @covers IntegerValue::multiply
      */
     public function testMultiply(): void
     {
@@ -66,6 +83,7 @@ class IntegerValueTest extends TestCase
      * Tests the divide method.
      * 
      * @return void
+     * @covers IntegerValue::divide
      */
     public function testDivide(): void
     {
@@ -80,11 +98,11 @@ class IntegerValueTest extends TestCase
      * Tests the divide method with zero.
      * 
      * @return void
+     * @covers IntegerValue::divide
      */
     public function testDivideThrowsException(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Cannot divide by zero.');
+        $this->expectException(DivisionByZeroError::class);
 
         $a = new IntegerValue(10);
         $b = new IntegerValue(0);
@@ -95,6 +113,7 @@ class IntegerValueTest extends TestCase
      * Tests the empty method.
      * 
      * @return void
+     * @covers IntegerValue::empty
      */
     public function testEmpty(): void
     {
@@ -109,6 +128,7 @@ class IntegerValueTest extends TestCase
      * Tests the equals method.
      * 
      * @return void
+     * @covers IntegerValue::equals
      */
     public function testEquals(): void
     {
@@ -126,6 +146,7 @@ class IntegerValueTest extends TestCase
      * Tests the greaterThan method.
      * 
      * @return void
+     * @covers IntegerValue::greaterThan
      */
     public function testGreaterThan(): void
     {
@@ -143,6 +164,7 @@ class IntegerValueTest extends TestCase
      * Tests the greaterThanOrEquals method.
      * 
      * @return void
+     * @covers IntegerValue::greaterThanOrEquals
      */
     public function testGreaterThanOrEquals(): void
     {
@@ -160,6 +182,7 @@ class IntegerValueTest extends TestCase
      * Tests the lessThan method.
      * 
      * @return void
+     * @covers IntegerValue::lessThan
      */
     public function testLessThan(): void
     {
@@ -177,6 +200,7 @@ class IntegerValueTest extends TestCase
      * Tests the lessThanOrEquals method.
      * 
      * @return void
+     * @covers IntegerValue::lessThanOrEquals
      */
     public function testLessThanOrEquals(): void
     {
