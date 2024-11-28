@@ -11,6 +11,7 @@
 
 namespace Eophantasy\Types\Tests\Float;
 
+use DivisionByZeroError;
 use Eophantasy\Types\Float\FloatValue;
 
 use PHPUnit\Framework\TestCase;
@@ -92,5 +93,130 @@ class FloatValueTest extends TestCase
             new FloatValue(0.5238095238095238),
             $c
         );
+    }
+
+    /**
+     * Tests the divide method with zero.
+     * 
+     * @return void
+     * @covers FloatValue::divide
+     */
+    public function testDivideWithZero(): void
+    {
+        $this->expectException(DivisionByZeroError::class);
+
+        $a = new FloatValue(5.5);
+        $b = new FloatValue(0);
+        $c = $a->divide($b);
+
+        $this->assertEquals(
+            new FloatValue(INF),
+            $c
+        );
+    }
+
+      /**
+     * Tests the empty method.
+     * 
+     * @return void
+     * @covers FloatValue::empty
+     */
+    public function testEmpty(): void
+    {
+        $a = new FloatValue(0);
+        $b = new FloatValue(5.5);
+
+        $this->assertTrue($a->empty());
+        $this->assertFalse($b->empty());
+    }
+
+    /**
+     * Tests the equals method.
+     * 
+     * @return void
+     * @covers FloatValue::equals
+     */
+    public function testEquals(): void
+    {
+        $a = new FloatValue(5);
+        $b = new FloatValue(5);
+        $c = new FloatValue(10);
+
+        $this->assertFalse($a->equals($c));
+
+        $this->assertTrue($a->equals($b));
+        $this->assertTrue($c->equals($c));
+    }
+
+    /**
+     * Tests the greaterThan method.
+     * 
+     * @return void
+     * @covers FloatValue::greaterThan
+     */
+    public function testGreaterThan(): void
+    {
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
+
+        $this->assertFalse($a->greaterThan($b));
+        $this->assertFalse($a->greaterThan($c));
+
+        $this->assertTrue($b->greaterThan($a));
+    }
+
+    /**
+     * Tests the greaterThanOrEquals method.
+     * 
+     * @return void
+     * @covers FloatValue::greaterThanOrEquals
+     */
+    public function testGreaterThanOrEquals(): void
+    {
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
+
+        $this->assertFalse($a->greaterThanOrEquals($b));
+
+        $this->assertTrue($a->greaterThanOrEquals($c));
+        $this->assertTrue($b->greaterThanOrEquals($a));
+    }
+
+    /**
+     * Tests the lessThan method.
+     * 
+     * @return void
+     * @covers FloatValue::lessThan
+     */
+    public function testLessThan(): void
+    {
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
+
+        $this->assertFalse($b->lessThan($a));
+        $this->assertFalse($c->lessThan($a));
+
+        $this->assertTrue($a->lessThan($b));
+    }
+
+    /**
+     * Tests the lessThanOrEquals method.
+     * 
+     * @return void
+     * @covers FloatValue::lessThanOrEquals
+     */
+    public function testLessThanOrEquals(): void
+    {
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
+
+        $this->assertFalse($b->lessThanOrEquals($a));
+
+        $this->assertTrue($a->lessThanOrEquals($c));
+        $this->assertTrue($a->lessThanOrEquals($b));
     }
 }
