@@ -16,6 +16,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * A class for testing the StringValue class.
+ * 
+ * @covers StringValue
  */
 class StringValueTest extends TestCase
 {
@@ -32,5 +34,33 @@ class StringValueTest extends TestCase
         $c = $a->concat($b);
 
         $this->assertEquals(new StringValue('Hello, world!'), $c);
+    }
+
+    /**
+     * Tests the empty method.
+     * 
+     * @return void
+     * @covers StringValue::empty
+     */
+    public function testEmpty(): void
+    {
+        $this->assertTrue((new StringValue(''))->empty());
+        $this->assertFalse((new StringValue('Hello'))->empty());
+    }
+
+    /**
+     * Tests the equals method.
+     * 
+     * @return void
+     * @covers StringValue::equals
+     */
+    public function testEquals(): void
+    {
+        $a = new StringValue('Hello');
+        $b = new StringValue('Hello');
+        $c = new StringValue('World');
+
+        $this->assertTrue($a->equals($b));
+        $this->assertFalse($a->equals($c));
     }
 }
