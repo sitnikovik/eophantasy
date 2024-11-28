@@ -41,6 +41,83 @@ class StringSequenceTest extends TestCase
     }
 
     /**
+     * Tests the add method.
+     * 
+     * @return void
+     * @covers StringSequence::add
+     */
+    public function testAdd(): void
+    {
+        $a = new StringSequence(
+            new StringValue('a'),
+            new StringValue('b'),
+            new StringValue('c')
+        );
+        $b = $a->add(new StringValue('d'));
+
+        $this->assertNotEquals($a, $b);
+        $this->assertNotSame($a, $b);
+        $this->assertEquals(
+            new StringSequence(
+                new StringValue('a'),
+                new StringValue('b'),
+                new StringValue('c'),
+                new StringValue('d')
+            ),
+            $b
+        );
+    }
+
+    /**
+     * Tests the remove method.
+     * 
+     * @return void
+     * @covers StringSequence::remove
+     */
+    public function testRemove(): void
+    {
+        $a = new StringSequence(
+            new StringValue('a'),
+            new StringValue('b'),
+            new StringValue('c')
+        );
+        $b = $a->remove(new StringValue('b'));
+        $c = $b->remove(new StringValue('c'));
+
+        $this->assertNotEquals($a, $b);
+        $this->assertNotSame($a, $b);
+        $this->assertNotSame($b, $c);
+        $this->assertNotSame($a, $c);
+
+        $this->assertEquals(
+            new StringSequence(
+                new StringValue('a'),
+            ),
+            $c
+        );
+    }
+
+    /**
+     * Tests the has method.
+     * 
+     * @return void
+     * @covers StringSequence::has
+     */
+    public function testHas(): void
+    {
+        $sequence = new StringSequence(
+            new StringValue('a'),
+            new StringValue('b'),
+            new StringValue('c')
+        );
+
+        $this->assertTrue($sequence->has(new StringValue('a')));
+        $this->assertTrue($sequence->has(new StringValue('b')));
+        $this->assertTrue($sequence->has(new StringValue('c')));
+        $this->assertFalse($sequence->has(new StringValue('d')));
+    }
+
+    /**
      * Tests the count method.
      * 
      * @return void

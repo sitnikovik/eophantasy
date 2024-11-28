@@ -31,12 +31,70 @@ class StringSequence implements Countable, Iterator
      */
     private $items;
 
+    /**
+     * Creates a new StringSequence instance.
+     * 
+     * @param StringValue ...$stringValues The string values.
+     */
     public function __construct(StringValue ...$stringValues)
     {
         $this->items = $stringValues;
     }
 
-        /**
+    /**
+     * Adds strings to the sequence and returns the new sequence.
+     * 
+     * @param StringValue ...$stringValues The string to add.
+     * @return StringSequence The new sequence.
+     */
+    public function add(StringValue ...$stringValues): StringSequence
+    {
+        $items = $this->items;
+        foreach ($stringValues as $string) {
+            $items[] = $string;
+        }
+
+        return new StringSequence(...$items);
+    }
+
+    /**
+     * Searches and removes the provided string from the sequence and returns the new sequence.
+     * 
+     * @param StringValue ...$stringValues The string to remove.
+     * @return StringSequence The new sequence.
+     */
+    public function remove(StringValue ...$stringValues): StringSequence
+    {
+        $items = $this->items;
+        foreach ($items as $key => $item) {
+            foreach ($stringValues as $string) {
+                if ($item->equals($string)) {
+                    unset($items[$key]);
+                }
+            }
+        }
+
+        return new StringSequence(...$items);
+    }
+
+    /**
+     * Checks if the provided string is in the sequence.
+     * 
+     * @param StringValue $string The string to check.
+     * @return bool
+     */
+    public function has(StringValue $string): bool
+    {
+        foreach ($this->items as $item) {
+            if ($item->equals($string)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Counts the number of items in the sequence.
      * 
      * @return int
@@ -49,9 +107,9 @@ class StringSequence implements Countable, Iterator
     /**
      * Returns the current item.
      * 
-     * @return mixed
+     * @return StringValue
      */
-    public function current(): mixed
+    public function current(): StringValue
     {
         return current($this->items);
     }
