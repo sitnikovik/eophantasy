@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Tests\Array;
+namespace Eophantasy\Types\Tests\Integer;
 
-use Eophantasy\Types\Array\IntegerSequence;
+use Eophantasy\Types\Integer\IntegerSequence;
 use Eophantasy\Types\Integer\IntegerValue;
 use PHPUnit\Framework\TestCase;
 

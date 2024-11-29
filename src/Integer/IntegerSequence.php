@@ -9,10 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Array;
+namespace Eophantasy\Types\Integer;
 
 use Countable;
-use Eophantasy\Types\Integer\IntegerValue;
 use Iterator;
 
 /**

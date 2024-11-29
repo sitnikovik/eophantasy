@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Tests\Array;
+namespace Eophantasy\Types\Tests\Float;
 
-use Eophantasy\Types\Array\FloatSequence;
+use Eophantasy\Types\Float\FloatSequence;
 use Eophantasy\Types\Float\FloatValue;
 use PHPUnit\Framework\TestCase;
 
