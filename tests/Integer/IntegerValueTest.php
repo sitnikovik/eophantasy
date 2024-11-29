@@ -46,6 +46,7 @@ class IntegerValueTest extends TestCase
         $b = new IntegerValue(10);
         $c = $a->sum($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(new IntegerValue(15), $c);
     }
 
@@ -61,6 +62,7 @@ class IntegerValueTest extends TestCase
         $b = new IntegerValue(10);
         $c = $a->subtract($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(new IntegerValue(-5), $c);
     }
 
@@ -76,6 +78,7 @@ class IntegerValueTest extends TestCase
         $b = new IntegerValue(10);
         $c = $a->multiply($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(new IntegerValue(50), $c);
     }
 
@@ -91,6 +94,7 @@ class IntegerValueTest extends TestCase
         $b = new IntegerValue(5);
         $c = $a->divide($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(new IntegerValue(2), $c);
     }
 
@@ -106,7 +110,9 @@ class IntegerValueTest extends TestCase
 
         $a = new IntegerValue(10);
         $b = new IntegerValue(0);
-        $a->divide($b);
+        $c = $a->divide($b);
+
+        $this->assertNotSame($c, $a);
     }
 
     /**

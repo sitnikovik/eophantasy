@@ -33,6 +33,7 @@ class StringValueTest extends TestCase
         $b = new StringValue('world!');
         $c = $a->concat($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(new StringValue('Hello, world!'), $c);
     }
 
