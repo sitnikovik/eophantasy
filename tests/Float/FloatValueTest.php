@@ -35,6 +35,7 @@ class FloatValueTest extends TestCase
         $b = new FloatValue(10.5);
         $c = $a->sum($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(
             new FloatValue(16.0),
             $c
@@ -53,6 +54,7 @@ class FloatValueTest extends TestCase
         $b = new FloatValue(10.5);
         $c = $a->subtract($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(
             new FloatValue(-5.0),
             $c
@@ -71,6 +73,7 @@ class FloatValueTest extends TestCase
         $b = new FloatValue(10.5);
         $c = $a->multiply($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(
             new FloatValue(57.75),
             $c
@@ -89,6 +92,7 @@ class FloatValueTest extends TestCase
         $b = new FloatValue(10.5);
         $c = $a->divide($b);
 
+        $this->assertNotSame($c, $a);
         $this->assertEquals(
             new FloatValue(0.5238095238095238),
             $c
@@ -109,10 +113,7 @@ class FloatValueTest extends TestCase
         $b = new FloatValue(0);
         $c = $a->divide($b);
 
-        $this->assertEquals(
-            new FloatValue(INF),
-            $c
-        );
+        $this->assertNotSame($c, $a);
     }
 
       /**

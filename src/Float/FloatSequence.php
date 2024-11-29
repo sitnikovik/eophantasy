@@ -9,10 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Array;
+namespace Eophantasy\Types\Float;
 
 use Countable;
-use Eophantasy\Types\Float\FloatValue;
 use Iterator;
 
 /**
