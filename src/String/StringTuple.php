@@ -17,9 +17,11 @@ use Iterator;
 /**
  * A class representing a list of string values with integer indexes.
  * 
+ * It is a tuple of strings with a fixed length, meaning that the number of values in the tuple is constant.
+ * It is immutable, meaning that its value cannot be changed after it is created.
+ * 
  * This class implements the Countable and Iterator interfaces 
  * to provide a way to work with the tuple as with an array.
- * It is immutable, meaning that its value cannot be changed after it is created.
  */
 class StringTuple implements Countable, Iterator
 {
