@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Tests\String;
+namespace Eophantasy\Test\Type\String;
 
-use Eophantasy\Types\String\StringSequence;
-use Eophantasy\Types\String\StringValue;
+use Eophantasy\Type\String\StringSequence;
+use Eophantasy\Type\String\StringValue;
 use PHPUnit\Framework\TestCase;
 
 /**

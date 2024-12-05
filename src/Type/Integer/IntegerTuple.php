@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Integer;
+namespace Eophantasy\Type\Integer;
 
 use Countable;
 use Iterator;

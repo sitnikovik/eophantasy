@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Float;
+namespace Eophantasy\Type\Float;
 
 use Countable;
 use Iterator;

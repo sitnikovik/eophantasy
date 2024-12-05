@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\String;
+namespace Eophantasy\Type\String;
 
 use Countable;
 use Iterator;
@@ -17,21 +17,23 @@ use Iterator;
 /**
  * A class representing a list of string values with integer indexes.
  * 
- * This class implements the Countable and Iterator interfaces 
- * to provide a way to work with the sequence as with an array.
+ * It is a tuple of strings with a fixed length, meaning that the number of values in the tuple is constant.
  * It is immutable, meaning that its value cannot be changed after it is created.
+ * 
+ * This class implements the Countable and Iterator interfaces 
+ * to provide a way to work with the tuple as with an array.
  */
-class StringSequence implements Countable, Iterator
+class StringTuple implements Countable, Iterator
 {
     /**
-     * The stored items of the sequence as string values only.
+     * The stored items of the tuple as string values only.
      * 
      * @param StringValue[] $items
      */
     private $items;
 
     /**
-     * Creates a new StringSequence instance.
+     * Creates a new StringTuple instance.
      * 
      * @param StringValue ...$stringValues The string values.
      */
@@ -41,28 +43,28 @@ class StringSequence implements Countable, Iterator
     }
 
     /**
-     * Adds strings to the sequence and returns the new sequence.
+     * Adds strings to the tuple and returns the new tuple.
      * 
      * @param StringValue ...$stringValues The string to add.
-     * @return StringSequence The new sequence.
+     * @return StringTuple The new tuple.
      */
-    public function add(StringValue ...$stringValues): StringSequence
+    public function add(StringValue ...$stringValues): StringTuple
     {
         $items = $this->items;
         foreach ($stringValues as $string) {
             $items[] = $string;
         }
 
-        return new StringSequence(...$items);
+        return new StringTuple(...$items);
     }
 
     /**
-     * Searches and removes the provided string from the sequence and returns the new sequence.
+     * Searches and removes the provided string from the tuple and returns the new tuple.
      * 
      * @param StringValue ...$stringValues The string to remove.
-     * @return StringSequence The new sequence.
+     * @return StringTuple The new tuple.
      */
-    public function remove(StringValue ...$stringValues): StringSequence
+    public function remove(StringValue ...$stringValues): StringTuple
     {
         $items = $this->items;
         foreach ($items as $key => $item) {
@@ -73,11 +75,11 @@ class StringSequence implements Countable, Iterator
             }
         }
 
-        return new StringSequence(...$items);
+        return new StringTuple(...$items);
     }
 
     /**
-     * Checks if the provided string is in the sequence.
+     * Checks if the provided string is in the tuple.
      * 
      * @param StringValue $string The string to check.
      * @return bool
@@ -94,7 +96,7 @@ class StringSequence implements Countable, Iterator
     }
 
     /**
-     * Counts the number of items in the sequence.
+     * Counts the number of items in the tuple.
      * 
      * @return int
      */

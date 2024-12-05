@@ -9,122 +9,123 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Types\Tests\Integer;
+namespace Eophantasy\Test\Type\Float;
 
 use DivisionByZeroError;
-use Eophantasy\Types\Integer\IntegerValue;
+use Eophantasy\Type\Float\FloatValue;
+
 use PHPUnit\Framework\TestCase;
 
 /**
- * A class for testing the IntegerValue class.
+ * A class for testing the FloatValue class.
+ * 
+ * @covers FloatValue
  */
-class IntegerValueTest extends TestCase
+class FloatValueTest extends TestCase
 {
-    /**
-     * Tests the construct method.
-     * 
-     * @return void
-     * @covers IntegerValue::__construct
-     */
-    public function testConstruct(): void
-    {
-        $this->assertInstanceOf(
-            IntegerValue::class,
-            new IntegerValue(5)
-        );
-    }
-
     /**
      * Tests the sum method.
      * 
      * @return void
-     * @covers IntegerValue::sum
+     * @covers FloatValue::sum
      */
     public function testSum(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(10);
+        $a = new FloatValue(5.5);
+        $b = new FloatValue(10.5);
         $c = $a->sum($b);
 
         $this->assertNotSame($c, $a);
-        $this->assertEquals(new IntegerValue(15), $c);
+        $this->assertEquals(
+            new FloatValue(16.0),
+            $c
+        );
     }
 
     /**
      * Tests the subtract method.
      * 
      * @return void
-     * @covers IntegerValue::subtract
+     * @covers FloatValue::subtract
      */
     public function testSubtract(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(10);
+        $a = new FloatValue(5.5);
+        $b = new FloatValue(10.5);
         $c = $a->subtract($b);
 
         $this->assertNotSame($c, $a);
-        $this->assertEquals(new IntegerValue(-5), $c);
+        $this->assertEquals(
+            new FloatValue(-5.0),
+            $c
+        );
     }
 
     /**
      * Tests the multiply method.
      * 
      * @return void
-     * @covers IntegerValue::multiply
+     * @covers FloatValue::multiply
      */
     public function testMultiply(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(10);
+        $a = new FloatValue(5.5);
+        $b = new FloatValue(10.5);
         $c = $a->multiply($b);
 
         $this->assertNotSame($c, $a);
-        $this->assertEquals(new IntegerValue(50), $c);
+        $this->assertEquals(
+            new FloatValue(57.75),
+            $c
+        );
     }
 
     /**
      * Tests the divide method.
      * 
      * @return void
-     * @covers IntegerValue::divide
+     * @covers FloatValue::divide
      */
     public function testDivide(): void
     {
-        $a = new IntegerValue(10);
-        $b = new IntegerValue(5);
+        $a = new FloatValue(5.5);
+        $b = new FloatValue(10.5);
         $c = $a->divide($b);
 
         $this->assertNotSame($c, $a);
-        $this->assertEquals(new IntegerValue(2), $c);
+        $this->assertEquals(
+            new FloatValue(0.5238095238095238),
+            $c
+        );
     }
 
     /**
      * Tests the divide method with zero.
      * 
      * @return void
-     * @covers IntegerValue::divide
+     * @covers FloatValue::divide
      */
-    public function testDivideThrowsException(): void
+    public function testDivideWithZero(): void
     {
         $this->expectException(DivisionByZeroError::class);
 
-        $a = new IntegerValue(10);
-        $b = new IntegerValue(0);
+        $a = new FloatValue(5.5);
+        $b = new FloatValue(0);
         $c = $a->divide($b);
 
         $this->assertNotSame($c, $a);
     }
 
-    /**
+      /**
      * Tests the empty method.
      * 
      * @return void
-     * @covers IntegerValue::empty
+     * @covers FloatValue::empty
      */
     public function testEmpty(): void
     {
-        $a = new IntegerValue(0);
-        $b = new IntegerValue(5);
+        $a = new FloatValue(0);
+        $b = new FloatValue(5.5);
 
         $this->assertTrue($a->empty());
         $this->assertFalse($b->empty());
@@ -134,13 +135,13 @@ class IntegerValueTest extends TestCase
      * Tests the equals method.
      * 
      * @return void
-     * @covers IntegerValue::equals
+     * @covers FloatValue::equals
      */
     public function testEquals(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(5);
-        $c = new IntegerValue(10);
+        $a = new FloatValue(5);
+        $b = new FloatValue(5);
+        $c = new FloatValue(10);
 
         $this->assertFalse($a->equals($c));
 
@@ -152,13 +153,13 @@ class IntegerValueTest extends TestCase
      * Tests the greaterThan method.
      * 
      * @return void
-     * @covers IntegerValue::greaterThan
+     * @covers FloatValue::greaterThan
      */
     public function testGreaterThan(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(10);
-        $c = new IntegerValue(5);
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
 
         $this->assertFalse($a->greaterThan($b));
         $this->assertFalse($a->greaterThan($c));
@@ -170,13 +171,13 @@ class IntegerValueTest extends TestCase
      * Tests the greaterThanOrEquals method.
      * 
      * @return void
-     * @covers IntegerValue::greaterThanOrEquals
+     * @covers FloatValue::greaterThanOrEquals
      */
     public function testGreaterThanOrEquals(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(10);
-        $c = new IntegerValue(5);
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
 
         $this->assertFalse($a->greaterThanOrEquals($b));
 
@@ -188,13 +189,13 @@ class IntegerValueTest extends TestCase
      * Tests the lessThan method.
      * 
      * @return void
-     * @covers IntegerValue::lessThan
+     * @covers FloatValue::lessThan
      */
     public function testLessThan(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(10);
-        $c = new IntegerValue(5);
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
 
         $this->assertFalse($b->lessThan($a));
         $this->assertFalse($c->lessThan($a));
@@ -206,13 +207,13 @@ class IntegerValueTest extends TestCase
      * Tests the lessThanOrEquals method.
      * 
      * @return void
-     * @covers IntegerValue::lessThanOrEquals
+     * @covers FloatValue::lessThanOrEquals
      */
     public function testLessThanOrEquals(): void
     {
-        $a = new IntegerValue(5);
-        $b = new IntegerValue(10);
-        $c = new IntegerValue(5);
+        $a = new FloatValue(5);
+        $b = new FloatValue(10);
+        $c = new FloatValue(5);
 
         $this->assertFalse($b->lessThanOrEquals($a));
 
