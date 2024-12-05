@@ -38,6 +38,16 @@ class FloatValue
     }
 
     /**
+     * Returns the float value.
+     * 
+     * @return float
+     */
+    public function value(): float
+    {
+        return $this->value;
+    }
+
+    /**
      * Sums the provided float to the current float and returns the new one.
      * 
      * @param FloatValue $float The float to sum.

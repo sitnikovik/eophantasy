@@ -36,6 +36,16 @@ class StringValue
     }
 
     /**
+     * Returns the string value.
+     * 
+     * @return string
+     */
+    public function value(): string
+    {
+        return $this->value;
+    }
+
+    /**
      * Concatenates provided string to the current string and returns the new one.
      * 
      * @param StringValue $string The string to concatenate.
