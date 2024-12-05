@@ -1,16 +1,16 @@
 {
-    "name": "eophantasy/types",
-    "description": "The library contains immutable objects to work with scalar types.",
+    "name": "sitnikovik/eophantasy",
+    "description": "True OOP framework for PHP based projects",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Eophantasy\\Types\\": "src/"
+            "Eophantasy\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Eophantasy\\Types\\Test\\": "tests/"
+            "Eophantasy\\Test\\": "tests/"
         }
     },
     "authors": [
