@@ -38,6 +38,16 @@ class IntegerValue
     }
 
     /**
+     * Returns the integer value.
+     * 
+     * @return int
+     */
+    public function value(): int
+    {
+        return $this->value;
+    }
+
+    /**
      * Sums provided integer to the current integer and returns the new one.
      * 
      * @param IntegerValue $integer - The integer to sum.

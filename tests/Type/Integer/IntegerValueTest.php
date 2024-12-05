@@ -35,6 +35,18 @@ class IntegerValueTest extends TestCase
     }
 
     /**
+     * Tests the value method.
+     * 
+     * @return void
+     * @covers IntegerValue::value
+     */
+    public function testValue(): void
+    {
+        $a = new IntegerValue(5);
+        $this->assertEquals(5, $a->value());
+    }
+
+    /**
      * Tests the sum method.
      * 
      * @return void

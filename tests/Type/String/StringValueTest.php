@@ -38,6 +38,18 @@ class StringValueTest extends TestCase
     }
 
     /**
+     * Tests the value method.
+     * 
+     * @return void
+     * @covers StringValue::value
+     */
+    public function testValue(): void
+    {
+        $a = new StringValue('Hello, world!');
+        $this->assertEquals('Hello, world!', $a->value());
+    }
+
+    /**
      * Tests the empty method.
      * 
      * @return void

@@ -43,6 +43,18 @@ class FloatValueTest extends TestCase
     }
 
     /**
+     * Tests the value method.
+     * 
+     * @return void
+     * @covers FloatValue::value
+     */
+    public function testValue(): void
+    {
+        $a = new FloatValue(5.5);
+        $this->assertEquals(5.5, $a->value());
+    }
+
+    /**
      * Tests the subtract method.
      * 
      * @return void
