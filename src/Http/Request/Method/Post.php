@@ -12,7 +12,12 @@
 namespace Eophantasy\Http\Request\Method;
 
 /**
- * A class representing a POST query parameter.
+ * A class representing a POST HTTP method.
+ * 
+ * The POST method is used to submit an entity to the specified resource, 
+ * often causing a change in state or side effects on the server.
+ * 
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
  */
 final class Post implements Method
 {

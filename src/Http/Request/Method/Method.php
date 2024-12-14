@@ -18,6 +18,8 @@ use Stringable;
  * 
  * A method is a string that represents an HTTP method.
  * For example, 'GET', 'POST', 'PUT', 'DELETE', etc.
+ * 
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
  */
 interface Method extends Stringable
 {

@@ -12,7 +12,12 @@
 namespace Eophantasy\Http\Request\Method;
 
 /**
- * A class representing a GET query parameter.
+ * A class representing a GET HTTP method.
+ * 
+ * The GET method is used to retrieve information from the given server using a given URI.
+ * Requests using GET should only retrieve data.
+ * 
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET
  */
 final class Get implements Method
 {
