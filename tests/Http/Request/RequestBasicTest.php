@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * A class for testing the RequestBasic class.
  * 
- * @covers RequestSimple
+ * @covers RequestBasic
  */
 final class RequestBasicTest extends TestCase
 {

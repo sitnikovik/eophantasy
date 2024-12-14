@@ -11,6 +11,8 @@
 
 namespace Eophantasy\Http\Request;
 
+use CurlHandle;
+use Eophantasy\Http\Request\Method\Get;
 use Eophantasy\Http\Request\Method\Method;
 use Eophantasy\Http\Request\Url\Url;
 use Eophantasy\Http\Response\Response;
@@ -24,7 +26,7 @@ use Exception;
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP
  */
-final class RequestBasic implements Request
+final class RequestBasic extends Request
 {
     /**
      * The request method.
@@ -57,10 +59,7 @@ final class RequestBasic implements Request
      */
     public function response(): Response
     {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, (string)$this->method);
-        curl_setopt($curl, CURLOPT_URL, (string)$this->url);
+        $curl = $this->toCurlHandle();
 
         $startMs = microtime(true);
         $response = curl_exec($curl);
@@ -81,5 +80,21 @@ final class RequestBasic implements Request
             $statusCode,
             $endMs - $startMs
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toCurlHandle(): CurlHandle
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_URL, (string)$this->url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, (string)$this->method);
+        if ($this->method != new Get()) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, (string)$this->url);
+        }
+
+        return $curl;
     }
 }
