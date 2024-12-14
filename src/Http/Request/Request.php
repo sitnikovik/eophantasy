@@ -11,6 +11,7 @@
 
 namespace Eophantasy\Http\Request;
 
+use CurlHandle;
 use Eophantasy\Http\Response\Response;
 
 /**
@@ -18,12 +19,21 @@ use Eophantasy\Http\Response\Response;
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP
  */
-interface Request
+abstract class Request
 {
     /**
      * Sends the request and returns the response.
      * 
      * @return Response
      */
-    public function response(): Response;
+    abstract public function response(): Response;
+
+    /**
+     * Converts the request to a cURL handle.
+     * 
+     * Used internally to build a cURL request to be sent.
+     * 
+     * @return CurlHandle
+     */
+    abstract protected function toCurlHandle(): CurlHandle;
 }
