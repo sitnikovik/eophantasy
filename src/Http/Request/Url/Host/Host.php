@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Http\Request\Uri\Host;
+namespace Eophantasy\Http\Request\Url\Host;
 
 use Stringable;
 
 /**
  * A class representing a host name.
  * 
- * The host is the part of the URI that comes after the scheme.
+ * The host is the part of the URL that comes after the scheme.
  * and before the path and looks like this: https://"example.com"/path/to/resource.
  * 
  * @see https://tools.ietf.org/html/rfc3986#section-3.2.2

@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Http\Request\Uri\Protocol;
+namespace Eophantasy\Http\Request\Url\Protocol;
 
-use Eophantasy\Http\Request\Uri\Protocol\Protocol;
+use Eophantasy\Http\Request\Url\Protocol\Protocol;
 
 /**
- * A class representing a HTTPS protocol.
+ * A class representing the HTTP protocol.
  * 
- * The HTTPS protocol is a secure version of the HTTP protocol.
- * It is used to encrypt the data sent between the client and the server.
+ * The HTTP protocol is used to transfer data between the client and the server.
+ * It is the foundation of any data exchange on the Web.
  * 
- * @see https://developer.mozilla.org/en-US/docs/Glossary/HTTPS
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP
  */
-final class Https implements Protocol
+final class Http implements Protocol
 {
     /**
      * Returns the string representation of the query.

@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Http\Request\Uri\Path;
+namespace Eophantasy\Http\Request\Url\Path;
 
 use Stringable;
 
 /**
  * A path implementation.
  * 
- * The path is the part of the URI that comes after the host
+ * The path is the part of the URL that comes after the host
  * and looks like this: https://example.com"/path/to/resource"?query=string.
  * 
  * @see https://tools.ietf.org/html/rfc3986#section-3.3
@@ -24,7 +24,7 @@ use Stringable;
 final class Path implements Stringable
 {
     /**
-     * Uri path.
+     * Url path.
      * 
      * @var string
      */

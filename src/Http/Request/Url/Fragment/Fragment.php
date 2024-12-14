@@ -1,13 +1,13 @@
 <?php
 
-namespace Eophantasy\Http\Request\Uri\Fragment;
+namespace Eophantasy\Http\Request\Url\Fragment;
 
 use Stringable;
 
 /**
- * A class representing a URI fragment.
+ * A class representing a URL fragment.
  * 
- * In URI it looks like this: https://example.com/path/to/resource"#fragment".
+ * In URL it looks like this: https://example.com/path/to/resource"#fragment".
  * 
  * @see https://tools.ietf.org/html/rfc3986#section-3.5
  */

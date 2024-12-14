@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Http\Request\Uri\Query;
+namespace Eophantasy\Http\Request\Url\Query;
 
 use Stringable;
 
 /**
- * A class representing a query parameter of a URI.
+ * A class representing a query parameter of a URL.
  * 
- * A query parameter is a key-value pair that is appended to the end of a URI.
+ * A query parameter is a key-value pair that is appended to the end of a URL.
  * For example, 'page=2'.
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/API/URL/search
@@ -40,7 +40,7 @@ final class Query implements Stringable
     /**
      * Constructs a new Query.
      * 
-     * A query parameter is a key-value pair that is appended to the end of a URI.
+     * A query parameter is a key-value pair that is appended to the end of a URL.
      * 
      * @param string $name The name of the query parameter, for example, 'page'.
      * @param string $value The value of the query parameter, for example, '2'.
