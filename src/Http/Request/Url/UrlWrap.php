@@ -15,11 +15,11 @@ use Eophantasy\Http\Request\Url\Host\Host;
 use Eophantasy\Http\Request\Url\Protocol\Protocol;
 
 /**
- * A URL without a path.
+ * A wrap class representing a URL without a path.
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/API/URL
  */
-final class UrlWithoutPath implements Url
+final class UrlWrap implements Url
 {
     /**
      * The URL protocol.

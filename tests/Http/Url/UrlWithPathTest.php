@@ -15,7 +15,7 @@ use Eophantasy\Http\Request\Url\Host\Host;
 use Eophantasy\Http\Request\Url\Path\Path;
 use Eophantasy\Http\Request\Url\Protocol\Https;
 use Eophantasy\Http\Request\Url\UrlWithPath;
-use Eophantasy\Http\Request\Url\UrlWithoutPath;
+use Eophantasy\Http\Request\Url\UrlWrap;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,14 +30,14 @@ final class UrlWithPathTest extends TestCase
      * 
      * @return void
      * @covers \Eophantasy\Http\Request\Url\UrlWithPath::__toString
-     * @covers \Eophantasy\Http\Request\Url\UrlWithoutPath::__toString
+     * @covers \Eophantasy\Http\Request\Url\UrlWrap::__toString
      * @covers \Eophantasy\Http\Request\Url\Protocol\Https::__toString
      * @covers \Eophantasy\Http\Request\Url\Host\Host::__toString
      */
     public function testToString(): void
     {   
         $url = new UrlWithPath(
-            new UrlWithoutPath(
+            new UrlWrap(
                 new Https(),
                 new Host('example.com'),
             ),

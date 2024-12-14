@@ -14,7 +14,7 @@ namespace Eophantasy\Test\Http\Request\Url;
 use Eophantasy\Http\Request\Url\Query\Query;
 use Eophantasy\Http\Request\Url\Host\Host;
 use Eophantasy\Http\Request\Url\Protocol\Https;
-use Eophantasy\Http\Request\Url\UrlWithoutPath;
+use Eophantasy\Http\Request\Url\UrlWrap;
 use Eophantasy\Http\Request\Url\UrlWithQueries;
 use PHPUnit\Framework\TestCase;
 
@@ -30,7 +30,7 @@ final class UrlWithQueriesTest extends TestCase
      * 
      * @return void
      * @covers \Eophantasy\Http\Request\Url\UrlWithQueries::__toString
-     * @covers \Eophantasy\Http\Request\Url\UrlWithoutPath::__toString
+     * @covers \Eophantasy\Http\Request\Url\UrlWrap::__toString
      * @covers \Eophantasy\Http\Request\Url\Protocol\Https::__toString
      * @covers \Eophantasy\Http\Request\Url\Host\Host::__toString
      * @covers \Eophantasy\Http\Request\Url\Query\Query::__toString
@@ -38,7 +38,7 @@ final class UrlWithQueriesTest extends TestCase
     public function testToString(): void
     {
         $url = new UrlWithQueries(
-            new UrlWithoutPath(
+            new UrlWrap(
                 new Https(),
                 new Host('example.com'),
             ),
