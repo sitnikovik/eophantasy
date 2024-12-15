@@ -12,12 +12,9 @@
 namespace Eophantasy\Http\Request;
 
 use CurlHandle;
-use Eophantasy\Http\Request\Method\Get;
 use Eophantasy\Http\Request\Method\Method;
 use Eophantasy\Http\Request\Url\Url;
 use Eophantasy\Http\Response\Response;
-use Eophantasy\Http\Response\ResponseBasic;
-use Exception;
 
 /**
  * A class representing an HTTP request.
@@ -26,7 +23,7 @@ use Exception;
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP
  */
-final class RequestBasic extends Request
+final class RequestBasic implements Request
 {
     /**
      * The request method.
@@ -55,45 +52,28 @@ final class RequestBasic extends Request
     }
 
     /**
-     * @inheritDoc
+     * Sends the request and returns the response.
+     * 
+     * @return Response
      */
     public function response(): Response
     {
-        $curl = $this->toCurlHandle();
-
-        $startMs = microtime(true);
-        $response = curl_exec($curl);
-        $endMs = microtime(true);
-        curl_close($curl);
-        if ($response === false) {
-            throw new Exception(sprintf(
-                'The %s request to %s failed: %s',
-                $this->method,
-                $this->url,
-                curl_error($curl)
-            ));
-        }
-        $statusCode = (int)curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-        return new ResponseBasic(
-            $response,
-            $statusCode,
-            $endMs - $startMs
-        );
+        return (new CurlWrap(
+            $this->cURL()
+        ))->response();
     }
+
 
     /**
      * @inheritDoc
+     * @override
      */
-    public function toCurlHandle(): CurlHandle
+    public function cURL(): CurlHandle
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_URL, (string)$this->url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, (string)$this->method);
-        if ($this->method != new Get()) {
-            curl_setopt($curl, CURLOPT_POSTFIELDS, (string)$this->url);
-        }
 
         return $curl;
     }

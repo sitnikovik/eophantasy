@@ -19,14 +19,14 @@ use Eophantasy\Http\Response\Response;
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP
  */
-abstract class Request
+interface Request
 {
     /**
      * Sends the request and returns the response.
      * 
      * @return Response
      */
-    abstract public function response(): Response;
+    public function response(): Response;
 
     /**
      * Converts the request to a cURL handle.
@@ -35,5 +35,5 @@ abstract class Request
      * 
      * @return CurlHandle
      */
-    abstract protected function toCurlHandle(): CurlHandle;
+    public function cURL(): CurlHandle;
 }

@@ -11,12 +11,11 @@
 
 namespace Eophantasy\Test\Http\Request;
 
-use Eophantasy\File\File;
-use Eophantasy\Http\Request\Body\Body;
 use Eophantasy\Http\Request\Body\JsonBody;
 use Eophantasy\Http\Request\Header\Header;
 use Eophantasy\Http\Request\Method\Post;
 use Eophantasy\Http\Request\RequestBasic;
+use Eophantasy\Http\Request\RequestFake;
 use Eophantasy\Http\Request\RequestWithBody;
 use Eophantasy\Http\Request\RequestWithHeaders;
 use Eophantasy\Http\Request\Url\Query\Query;
@@ -61,14 +60,13 @@ final class RequestWithBodyTest extends TestCase
                         ),
                         new Query('limit', 10),
                         new Query('ok', true)
-                    ),
+                    )
                 ),
                 new JsonBody('{"foo": "bar"}')
             ),
             new Header('Content-Type', 'application/json'),
             new Header('Accept', 'application/json')
-        )
-        )->response();
+        ))->response();
 
         $jsonDecoded = json_decode(
             $response->read()->toString(),

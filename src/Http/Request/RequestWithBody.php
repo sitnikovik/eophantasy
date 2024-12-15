@@ -14,20 +14,18 @@ namespace Eophantasy\Http\Request;
 use CurlHandle;
 use Eophantasy\Http\Request\Body\Body;
 use Eophantasy\Http\Response\Response;
-use Eophantasy\Http\Response\ResponseBasic;
-use Exception;
 
 /**
  * A class representing an HTTP request with body
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP
  */
-final class RequestWithBody extends Request
+final class RequestWithBody implements Request
 {
     /**
      * The origin request.
      * 
-     * @var Request
+     * @var RequestByCurl
      */
     private $origin;
 
@@ -53,37 +51,23 @@ final class RequestWithBody extends Request
 
     /**
      * @inheritDoc
+     * @throws Exception If the request is invalid.
      */
     public function response(): Response
     {
-        $curl = $this->toCurlHandle();
-
-        $startMs = microtime(true);
-        $response = curl_exec($curl);
-        $endMs = microtime(true);
-        curl_close($curl);
-        if ($response === false) {
-            throw new Exception(sprintf(
-                'The request failed: %s', curl_error($curl)
-            ));
-        }
-        $statusCode = (int)curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-        return new ResponseBasic(
-            $response,
-            $statusCode,
-            $endMs - $startMs
-        );
+        return (new CurlWrap(
+            $this->cURL()
+        ))->response();
     }
 
     /**
      * @inheritDoc
      * @override
      */
-    public function toCurlHandle(): CurlHandle
+    public function cURL(): CurlHandle
     {
-        $curl = $this->origin->toCurlHandle();
-     
+        $curl = $this->origin->cURL();
+
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, (string)$this->body);
 

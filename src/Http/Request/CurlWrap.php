@@ -68,6 +68,12 @@ final class CurlWrap
             ));
         }
 
-        return new ResponseBasic($response, $startMs, $endMs);
+        $statusCode = (int)curl_getinfo($this->curlHandle, CURLINFO_HTTP_CODE);
+
+        return new ResponseBasic(
+            $response,
+            $statusCode,
+            $endMs - $startMs
+        );
     }
 }

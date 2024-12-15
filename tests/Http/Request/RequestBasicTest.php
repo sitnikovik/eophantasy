@@ -57,6 +57,11 @@ final class RequestBasicTest extends TestCase
 
         ))->response();
 
+        $this->assertEquals(
+            200,
+            $response->statusCode()
+        );
+
         $jsonDecoded = json_decode(
             $response->read()->toString(),
             true

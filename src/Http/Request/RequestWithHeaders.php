@@ -14,8 +14,6 @@ namespace Eophantasy\Http\Request;
 use CurlHandle;
 use Eophantasy\Http\Request\Header\Header;
 use Eophantasy\Http\Response\Response;
-use Eophantasy\Http\Response\ResponseBasic;
-use Exception;
 
 /**
  * A class represents a request with headers.
@@ -24,7 +22,7 @@ use Exception;
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
  */
-final class RequestWithHeaders extends Request
+final class RequestWithHeaders implements Request
 {
     /**
      * The origin request.
@@ -51,40 +49,24 @@ final class RequestWithHeaders extends Request
         $this->origin = $request;
         $this->headers = $headers;
     }
-
+    
     /**
      * @inheritDoc
-     * @override
+     * @throws Exception If the request is invalid.
      */
     public function response(): Response
     {
-        $curl = $this->toCurlHandle();
-
-        $startMs = microtime(true);
-        $response = curl_exec($curl);
-        $endMs = microtime(true);
-        curl_close($curl);
-        if ($response === false) {
-            throw new Exception(sprintf(
-                'The request failed: %s', curl_error($curl)
-            ));
-        }
-        $statusCode = (int)curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-        return new ResponseBasic(
-            $response,
-            $statusCode,
-            $endMs - $startMs
-        );
+        return (new CurlWrap(
+            $this->cURL()
+        ))->response();
     }
 
     /**
      * @inheritDoc
-     * @override
      */
-    protected function toCurlHandle(): CurlHandle
+    public function cURL(): CurlHandle
     {
-        $curl = $this->origin->toCurlHandle();
+        $curl = $this->origin->cURL();
 
         $headers = array_map(function (Header $header) {
             return (string) $header;
