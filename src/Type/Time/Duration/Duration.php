@@ -11,12 +11,12 @@
 
 namespace Eophantasy\Type\Time\Duration;
 
-use Stringable;
-
 /**
  * A class representing a duration of time.
+ * 
+ * It is immutable, meaning that its value cannot be changed after it is created.
  */
-abstract class Duration implements Stringable
+final class Duration
 {
     /**
      * The duration in microseconds.
@@ -26,61 +26,49 @@ abstract class Duration implements Stringable
     private $microseconds;
 
     /**
-     * Creates a new Duration instance.
-     * 
-     * @param int $microseconds The duration in microseconds.
+     * Creates a new NowDuration instance.
      */
-    public function __construct(int $microseconds)
+    public function __construct()
     {
-        $this->microseconds = $microseconds;
+        $this->microseconds = microtime(true);
     }
 
-    /**
+   /**
      * Adds the provided duration to the current duration.
      * 
-     * @param Duration $duration The duration to add.
-     * @return Duration The new duration.
+     * @param self $duration The duration to add.
+     * @return self The new duration.
      */
-    public function add(Duration $duration): Duration
+    public function add(self $duration): self
     {
-        return new Duration($this->microseconds + $duration->microseconds);
+        return new self($this->microseconds + $duration->microseconds);
     }
 
     /**
-     * Subtracts the provided duration to the current duration.
+     * Subtracts the provided duration from the current duration.
      * 
-     * @param Duration $duration The duration to subtract.
-     * @return Duration The new duration.
+     * @param self $duration The duration to subtract.
+     * @return self The new duration.
      */
-    public function subtract(Duration $duration): Duration
+    public function subtract(self $duration): self
     {
-        return new Duration($this->microseconds + $duration->microseconds);
+        return new self($this->microseconds - $duration->microseconds);
     }
 
     /**
      * Represents the duration in hours.
      * 
-     * @return int
-     */
-    public function hours(): int
-    {
-        return $this->microseconds / 3.6e6;
-    }
-
-    /**
-     * Represents the duration in minutes.
-     * 
-     * @return int
+     * @return int A number of hours.
      */
     public function minutes(): int
     {
-        return $this->microseconds / 6e4;
+        return $this->microseconds / 60;
     }
 
     /**
      * Represents the duration in seconds.
      * 
-     * @return int
+     * @return int A number of seconds.
      */
     public function seconds(): int
     {
@@ -90,42 +78,20 @@ abstract class Duration implements Stringable
     /**
      * Represents the duration in milliseconds.
      * 
-     * @return int
+     * @return int A number of milliseconds.
      */
     public function milliseconds(): int
     {
-        return $this->nanoseconds / 1e6;
+        return $this->microseconds / 1e3;
     }
 
     /**
      * Represents the duration in microseconds.
      * 
-     * @return int
+     * @return int A number of microseconds.
      */
     public function microseconds(): int
     {
-        return $this->nanoseconds / 1e3;
-    }
-
-    /**
-     * Represents the duration in nanoseconds.
-     * 
-     * @return int
-     */
-    public function nanoseconds(): int
-    {
-        return $this->nanoseconds;
-    }
-
-    public function __toString(): string
-    {
-        return json_encode([
-            'nanoseconds' => $this->nanoseconds,
-            'seconds' => $this->seconds(),
-            'milliseconds' => $this->milliseconds(),
-            'microseconds' => $this->microseconds(),
-            'minutes' => $this->minutes(),
-            'hours' => $this->hours()
-        ]);
+        return $this->microseconds;
     }
 }
