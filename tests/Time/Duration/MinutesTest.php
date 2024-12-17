@@ -26,7 +26,6 @@ final class MinutesTest extends TestCase
      * 
      * @return void
      * @covers Eophantasy\Time\Duration\Minutes::__construct
-     * @covers Eophantasy\Time\Duration\Duration::__construct
      */
     public function testConstruct(): void
     {
@@ -40,7 +39,7 @@ final class MinutesTest extends TestCase
      * Tests the add method.
      * 
      * @return void
-     * @covers Eophantasy\Time\Duration\Duration::add
+     * @covers Eophantasy\Time\Duration\Minutes::add
      */
     public function testAdd(): void
     {
@@ -60,7 +59,7 @@ final class MinutesTest extends TestCase
      * Tests the subtract method.
      * 
      * @return void
-     * @covers Eophantasy\Time\Duration\Duration::subtract
+     * @covers Eophantasy\Time\Duration\Minutes::subtract
      */
     public function testSubtract(): void
     {
@@ -79,7 +78,7 @@ final class MinutesTest extends TestCase
      * Tests the microseconds method.
      * 
      * @return void
-     * @covers Eophantasy\Time\Duration\Duration::microseconds
+     * @covers Eophantasy\Time\Duration\Minutes::microseconds
      */
     public function testMicroseconds(): void
     {
@@ -93,7 +92,7 @@ final class MinutesTest extends TestCase
      * Tests the millisecondss method.
      * 
      * @return void
-     * @covers Eophantasy\Time\Duration\Duration::milliseconds
+     * @covers Eophantasy\Time\Duration\Minutes::milliseconds
      */
     public function testMilliseconds(): void
     {
@@ -107,7 +106,7 @@ final class MinutesTest extends TestCase
      * Tests the minutes method.
      * 
      * @return void
-     * @covers Eophantasy\Time\Duration\Duration::minutes
+     * @covers Eophantasy\Time\Duration\Minutes::minutes
      */
     public function testMinutes(): void
     {
@@ -121,7 +120,7 @@ final class MinutesTest extends TestCase
      * Tests the seconds method.
      * 
      * @return void
-     * @covers Eophantasy\Time\Duration\Duration::seconds
+     * @covers Eophantasy\Time\Duration\Minutes::seconds
      */
     public function testSeconds(): void
     {
@@ -135,7 +134,7 @@ final class MinutesTest extends TestCase
      * Tests the hours method.
      * 
      * @return void
-     * @covers Eophantasy\Time\Duration\Duration::hours
+     * @covers Eophantasy\Time\Duration\Minutes::hours
      */
     public function testHours(): void
     {
