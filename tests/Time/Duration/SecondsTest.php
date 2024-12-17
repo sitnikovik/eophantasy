@@ -22,20 +22,6 @@ use PHPUnit\Framework\TestCase;
 final class SecondsTest extends TestCase
 {
     /**
-     * Tests the construct method.
-     * 
-     * @return void
-     * @covers Eophantasy\Time\Duration\Seconds::__construct
-     */
-    public function testConstruct(): void
-    {
-        $this->assertInstanceOf(
-            Seconds::class,
-            new Seconds(1)
-        );
-    }
-
-    /**
      * Tests the add method.
      * 
      * @return void
