@@ -19,7 +19,7 @@ namespace Eophantasy\Time\Duration;
  * 
  * It is immutable, meaning that its value cannot be changed after it is created.
  */
-abstract class Duration
+class Duration
 {
     /**
      * The duration in microseconds.
@@ -33,7 +33,7 @@ abstract class Duration
      * 
      * @param int $microseconds The duration in microseconds.
      */
-    public function __construct(int $microseconds)
+    protected function __construct(int $microseconds)
     {
         $this->microseconds = $microseconds;
     }
