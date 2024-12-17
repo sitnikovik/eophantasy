@@ -12,6 +12,7 @@
 namespace Eophantasy\Http\Response;
 
 use Eophantasy\IO\Reader;
+use Eophantasy\Time\Durationable;
 
 /**
  * An interface for reading HTTP responses.
@@ -20,7 +21,7 @@ use Eophantasy\IO\Reader;
  * 
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages
  */
-interface Response extends Reader
+interface Response extends Reader, Durationable
 {
     /**
      * Returns the status code.
