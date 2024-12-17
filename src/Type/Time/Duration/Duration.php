@@ -14,9 +14,12 @@ namespace Eophantasy\Type\Time\Duration;
 /**
  * A class representing a duration of time.
  * 
+ * The duration is represented in microseconds.
+ * It can be converted to other units of time using the provided methods.
+ * 
  * It is immutable, meaning that its value cannot be changed after it is created.
  */
-class Duration
+abstract class Duration
 {
     /**
      * The duration in microseconds.
@@ -28,11 +31,11 @@ class Duration
     /**
      * Creates a new NowDuration instance.
      * 
-     * @param int $microseconds The duration in microseconds. Defaults to the current time.
+     * @param int $microseconds The duration in microseconds.
      */
-    public function __construct(int $microseconds = 0)
+    public function __construct(int $microseconds)
     {
-        $this->microseconds = $microseconds ?: microtime(true);
+        $this->microseconds = $microseconds;
     }
 
    /**
