@@ -23,14 +23,16 @@ class Duration
      * 
      * @var int
      */
-    private $microseconds;
+    private int $microseconds;
 
     /**
      * Creates a new NowDuration instance.
+     * 
+     * @param int $microseconds The duration in microseconds. Defaults to the current time.
      */
-    public function __construct()
+    public function __construct(int $microseconds = 0)
     {
-        $this->microseconds = microtime(true);
+        $this->microseconds = $microseconds ?: microtime(true);
     }
 
    /**
@@ -41,7 +43,7 @@ class Duration
      */
     final public function add(self $duration): self
     {
-        return new self($this->microseconds + $duration->microseconds());
+        return new self($this->microseconds() + $duration->microseconds());
     }
 
     /**
@@ -52,45 +54,55 @@ class Duration
      */
     final public function subtract(self $duration): self
     {
-        return new self($this->microseconds - $duration->microseconds());
+        return new self($this->microseconds() - $duration->microseconds());
     }
 
     /**
      * Represents the duration in hours.
      * 
-     * @return int A number of hours.
+     * @return int A number of full hours.
      */
-    public function minutes(): int
+    final public function hours(): int
     {
-        return $this->microseconds / 60;
+        return $this->minutes() / 60;
+    }
+
+    /**
+     * Represents the duration in hours.
+     * 
+     * @return int A number of full minutes
+     */
+    final public function minutes(): int
+    {
+        return $this->seconds() / 60;
     }
 
     /**
      * Represents the duration in seconds.
      * 
-     * @return int A number of seconds.
+     * @return int A number of full seconds.
      */
-    public function seconds(): int
+    final public function seconds(): int
     {
-        return $this->microseconds / 1e6;
+        return $this->microseconds() / 1e6;
     }
 
     /**
      * Represents the duration in milliseconds.
      * 
-     * @return int A number of milliseconds.
+     * @return int A number of full milliseconds.
      */
-    public function milliseconds(): int
+    final public function milliseconds(): int
     {
-        return $this->microseconds / 1e3;
+        return $this->microseconds() / 1e3;
     }
 
     /**
-     * Represents the duration in microseconds.
+     * Represents the duration in microseconds
      * 
      * @return int A number of microseconds.
      */
-    public function microseconds(): int
+    final public function microseconds(): int
     {
         return $this->microseconds;
     }
