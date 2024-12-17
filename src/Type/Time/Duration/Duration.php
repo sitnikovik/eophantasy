@@ -16,7 +16,7 @@ namespace Eophantasy\Type\Time\Duration;
  * 
  * It is immutable, meaning that its value cannot be changed after it is created.
  */
-final class Duration
+class Duration
 {
     /**
      * The duration in microseconds.
@@ -39,9 +39,9 @@ final class Duration
      * @param self $duration The duration to add.
      * @return self The new duration.
      */
-    public function add(self $duration): self
+    final public function add(self $duration): self
     {
-        return new self($this->microseconds + $duration->microseconds);
+        return new self($this->microseconds + $duration->microseconds());
     }
 
     /**
@@ -50,9 +50,9 @@ final class Duration
      * @param self $duration The duration to subtract.
      * @return self The new duration.
      */
-    public function subtract(self $duration): self
+    final public function subtract(self $duration): self
     {
-        return new self($this->microseconds - $duration->microseconds);
+        return new self($this->microseconds - $duration->microseconds());
     }
 
     /**
