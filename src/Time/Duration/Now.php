@@ -22,9 +22,10 @@ final class Now extends Duration
      * Creates a new Milliseconds instance.
      * 
      * @param int $milliseconds The duration in milliseconds.
+     * @override
      */
     public function __construct()
     {
-        parent::__construct(microtime());
+        parent::__construct((int) microtime(true));
     }
 }

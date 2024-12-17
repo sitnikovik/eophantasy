@@ -16,7 +16,7 @@ namespace Eophantasy\Time\Duration;
  * 
  * It is immutable, meaning that its value cannot be changed after it is created.
  */
-final class DurationSince extends Duration
+final class Since extends Duration
 {
     /**
      * Creates a new DurationFrom instance that represents the duration since a given duration.
@@ -26,7 +26,9 @@ final class DurationSince extends Duration
     public function __construct(Duration $from)
     {
         parent::__construct(
-            (new Now())->subtract($from)
+            (new Now())
+                ->subtract($from)
+                ->microseconds()
         );
     }
 }
