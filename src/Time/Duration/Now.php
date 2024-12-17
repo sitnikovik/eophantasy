@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Type\Time\Duration;
+namespace Eophantasy\Time\Duration;
 
 /**
  * A class representing a duration of time in milliseconds.

@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Type\Time\Duration;
+namespace Eophantasy\Test\Time\Duration;
 
+use Eophantasy\Time\Duration\Seconds;
 use PHPUnit\Framework\TestCase;
 
 /**
  * A class for testing the Seconds class.
  * 
- * @covers Eophantasy\Type\Time\Duration\Seconds
+ * @covers Eophantasy\Time\Duration\Seconds
  */
 final class SecondsTest extends TestCase
 {
@@ -24,8 +25,8 @@ final class SecondsTest extends TestCase
      * Tests the construct method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Seconds::__construct
-     * @covers Eophantasy\Type\Time\Duration\Duration::__construct
+     * @covers Eophantasy\Time\Duration\Seconds::__construct
+     * @covers Eophantasy\Time\Duration\Duration::__construct
      */
     public function testConstruct(): void
     {
@@ -39,7 +40,7 @@ final class SecondsTest extends TestCase
      * Tests the add method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Duration::add
+     * @covers Eophantasy\Time\Duration\Duration::add
      */
     public function testAdd(): void
     {
@@ -59,7 +60,7 @@ final class SecondsTest extends TestCase
      * Tests the subtract method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Duration::subtract
+     * @covers Eophantasy\Time\Duration\Duration::subtract
      */
     public function testSubtract(): void
     {
@@ -78,7 +79,7 @@ final class SecondsTest extends TestCase
      * Tests the microseconds method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Duration::microseconds
+     * @covers Eophantasy\Time\Duration\Duration::microseconds
      */
     public function testMicroseconds(): void
     {
@@ -92,7 +93,7 @@ final class SecondsTest extends TestCase
      * Tests the milliseconds method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Duration::milliseconds
+     * @covers Eophantasy\Time\Duration\Duration::milliseconds
      */
     public function testMilliseconds(): void
     {
@@ -106,7 +107,7 @@ final class SecondsTest extends TestCase
      * Tests the seconds method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Duration::seconds
+     * @covers Eophantasy\Time\Duration\Duration::seconds
      */
     public function testSeconds(): void
     {
@@ -120,7 +121,7 @@ final class SecondsTest extends TestCase
      * Tests the minutes method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Duration::minutes
+     * @covers Eophantasy\Time\Duration\Duration::minutes
      */
     public function testMinutes(): void
     {
@@ -134,7 +135,7 @@ final class SecondsTest extends TestCase
      * Tests the hours method.
      * 
      * @return void
-     * @covers Eophantasy\Type\Time\Duration\Duration::hours
+     * @covers Eophantasy\Time\Duration\Duration::hours
      */
     public function testHours(): void
     {

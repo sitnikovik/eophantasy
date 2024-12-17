@@ -9,22 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Eophantasy\Type\Time\Duration;
+namespace Eophantasy\Time\Duration;
 
 /**
- * A class representing a duration of time in minutes.
+ * A class representing a duration of time in milliseconds.
  * 
  * It is immutable, meaning that its value cannot be changed after it is created.
  */
-final class Minutes extends Duration
+final class Milliseconds extends Duration
 {
     /**
-     * Creates a new Minutes instance.
+     * Creates a new Milliseconds instance.
      * 
-     * @param int $minutes The duration in minutes.
+     * @param int $milliseconds The duration in milliseconds.
      */
-    public function __construct(int $minutes)
+    public function __construct(int $milliseconds)
     {
-        parent::__construct($minutes * 1e6 * 60);
+        parent::__construct($milliseconds * 1e3);
     }
 }
