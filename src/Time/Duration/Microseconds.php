@@ -14,10 +14,18 @@ namespace Eophantasy\Time\Duration;
 /**
  * A class representing a duration of time in microseconds.
  * 
- * The class is used as alias for the Duration class to represent a duration of time in microseconds.
- * 
  * It is immutable, meaning that its value cannot be changed after it is created.
  */
 final class Microseconds extends Duration
 {
+    /**
+     * Creates a new Microseconds instance.
+     * 
+     * @param int $microseconds The duration in microseconds.
+     * @override
+     */
+    public function __construct(int $microseconds)
+    {
+        parent::__construct($microseconds);
+    }
 }
