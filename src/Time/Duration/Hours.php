@@ -22,6 +22,7 @@ final class Hours extends Duration
      * Creates a new Seconds instance.
      * 
      * @param int $hours The duration in hours.
+     * @override
      */
     public function __construct(int $hours)
     {

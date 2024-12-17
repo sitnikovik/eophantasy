@@ -22,6 +22,7 @@ final class Since extends Duration
      * Creates a new DurationFrom instance that represents the duration since a given duration.
      * 
      * @param Duration $from The duration since which to calculate the duration.
+     * @override
      */
     public function __construct(Duration $from)
     {

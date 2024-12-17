@@ -32,6 +32,7 @@ class Duration
      * Creates a new NowDuration instance.
      * 
      * @param int $microseconds The duration in microseconds.
+     * @override
      */
     protected function __construct(int $microseconds)
     {
