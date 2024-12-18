@@ -11,6 +11,7 @@
 
 namespace Eophantasy\Http\Response;
 
+use Eophantasy\Time\Duration\Duration;
 use Eophantasy\Type\Bytes\Bytes;
 use Eophantasy\Type\Bytes\BytesByString;
 
@@ -24,30 +25,17 @@ use Eophantasy\Type\Bytes\BytesByString;
 final class ResponseBasic implements Response
 {
     /**
-     * The body.
-     * 
-     * @var string
-     */
-    private $body;
-
-    /**
-     * The status code.
-     * 
-     * @var int
-     */
-    private $statusCode;
-
-    /**
      * Constructs a new Response.
      * 
      * @param string $body The body.
      * @param int $statusCode The status code.
+     * @param Duration $duration The duration.
      */
-    public function __construct(string $body, int $statusCode)
-    {
-        $this->body = $body;
-        $this->statusCode = $statusCode;
-    }
+    public function __construct(
+        private string $body,
+        private int $statusCode,
+        private Duration $duration
+    ) {}
 
     /**
      * Reads the body content as bytes.
@@ -67,5 +55,15 @@ final class ResponseBasic implements Response
     public function statusCode(): int
     {
         return $this->statusCode;
+    }
+
+    /**
+     * Returns the duration of time.
+     * 
+     * @return Duration
+     */
+    public function duration(): Duration
+    {
+        return $this->duration;
     }
 }
