@@ -36,6 +36,7 @@ final class RequestBasicTest extends TestCase
      * @covers RequestBasic::response
      * @covers RequestBasic::__construct
      * @covers ResponseBasic::read
+     * @covers ResponseBasic::duration
      * @covers ResponseBasic::__construct
      */
     public function testResponse()
@@ -60,6 +61,10 @@ final class RequestBasicTest extends TestCase
         $this->assertEquals(
             200,
             $response->statusCode()
+        );
+        $this->assertGreaterThanOrEqual(
+            0,
+            $response->duration()->milliseconds(),
         );
 
         $jsonDecoded = json_decode(

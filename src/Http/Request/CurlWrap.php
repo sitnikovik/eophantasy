@@ -14,6 +14,8 @@ namespace Eophantasy\Http\Request;
 use CurlHandle;
 use Eophantasy\Http\Response\Response;
 use Eophantasy\Http\Response\ResponseBasic;
+use Eophantasy\Time\Duration\Now;
+use Eophantasy\Time\Duration\Since;
 use Exception;
 
 /**
@@ -50,9 +52,9 @@ final class CurlWrap
      */
     public function response(): Response
     {
-        $startMs = microtime(true);
+        $startDur = new Now();
         $response = curl_exec($this->curlHandle);
-        $endMs = microtime(true);
+        $resposeEnded = new Since($startDur);
         curl_close($this->curlHandle);
 
         if ($response === false) {
@@ -73,7 +75,7 @@ final class CurlWrap
         return new ResponseBasic(
             $response,
             $statusCode,
-            $endMs - $startMs
+            $resposeEnded
         );
     }
 }
