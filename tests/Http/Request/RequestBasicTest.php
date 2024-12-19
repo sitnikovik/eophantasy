@@ -60,7 +60,7 @@ final class RequestBasicTest extends TestCase
 
         $this->assertEquals(
             200,
-            $response->statusCode()
+            $response->statusCode()->toInt()
         );
         $this->assertGreaterThanOrEqual(
             0,
