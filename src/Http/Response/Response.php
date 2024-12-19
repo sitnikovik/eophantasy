@@ -11,6 +11,7 @@
 
 namespace Eophantasy\Http\Response;
 
+use Eophantasy\Http\Response\Status\Code;
 use Eophantasy\IO\Reader;
 use Eophantasy\Time\Durationable;
 
@@ -26,9 +27,9 @@ interface Response extends Reader, Durationable
     /**
      * Returns the status code.
      * 
-     * @return int
+     * @return Code
      */
-    public function statusCode(): int;
+    public function statusCode(): Code;
 }
 
 

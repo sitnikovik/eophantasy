@@ -14,6 +14,7 @@ namespace Eophantasy\Http\Request;
 use CurlHandle;
 use Eophantasy\Http\Response\Response;
 use Eophantasy\Http\Response\ResponseBasic;
+use Eophantasy\Http\Response\Status\Code;
 use Eophantasy\Time\Duration\Now;
 use Eophantasy\Time\Duration\Since;
 use Exception;
@@ -70,11 +71,11 @@ final class CurlWrap
             ));
         }
 
-        $statusCode = (int)curl_getinfo($this->curlHandle, CURLINFO_HTTP_CODE);
-
         return new ResponseBasic(
             $response,
-            $statusCode,
+            new Code(
+                (int)curl_getinfo($this->curlHandle, CURLINFO_HTTP_CODE)
+            ),
             $resposeEnded
         );
     }
