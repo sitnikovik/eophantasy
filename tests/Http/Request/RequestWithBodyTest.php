@@ -15,7 +15,6 @@ use Eophantasy\Http\Request\Body\JsonBody;
 use Eophantasy\Http\Request\Header\Header;
 use Eophantasy\Http\Request\Method\Post;
 use Eophantasy\Http\Request\RequestBasic;
-use Eophantasy\Http\Request\RequestFake;
 use Eophantasy\Http\Request\RequestWithBody;
 use Eophantasy\Http\Request\RequestWithHeaders;
 use Eophantasy\Http\Request\Url\Query\Query;
