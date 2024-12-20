@@ -28,22 +28,25 @@ final class CodeByCurl extends Code
      */
     public function __construct(CurlHandle $curlHandle)
     {
-        $code = 200;
         switch (curl_errno($curlHandle)) {
-            case CURLE_OK:
-                $code = 200;
+            case CURLE_OPERATION_TIMEDOUT:
+                $code = 504; // Gateway Timeout
                 break;
             case CURLE_COULDNT_RESOLVE_HOST:
-                $code = 6;
-                break;
             case CURLE_COULDNT_CONNECT:
-                $code = 7;
+                $code = 502; // Bad Gateway
                 break;
-            case CURLE_OPERATION_TIMEDOUT:
-                $code = 28;
+            case CURLE_SSL_CONNECT_ERROR:
+                $code = 495; // SSL Certificate Error
+                break;
+            case CURLE_HTTP_RETURNED_ERROR:
+                $code = 500; // Internal Server Error
+                break;
+            case CURLE_TOO_MANY_REDIRECTS:
+                $code = 310; // Too Many Redirects
                 break;
             default:
-                $code = 500;
+                $code = 200;
                 break;
         }
 
