@@ -15,6 +15,7 @@ use CurlHandle;
 use Eophantasy\Http\Response\Response;
 use Eophantasy\Http\Response\ResponseBasic;
 use Eophantasy\Http\Response\Status\Code;
+use Eophantasy\Http\Response\Status\CodeByCurl;
 use Eophantasy\Time\Duration\Now;
 use Eophantasy\Time\Duration\Since;
 use Exception;
@@ -49,7 +50,6 @@ final class CurlWrap
      * Sends the cURL request and returns the response.
      * 
      * @return Response
-     * @throws Exception If the request fails.
      */
     public function response(): Response
     {
@@ -59,23 +59,16 @@ final class CurlWrap
         curl_close($this->curlHandle);
 
         if ($response === false) {
-            $methodUsed = curl_getinfo($this->curlHandle, CURLINFO_EFFECTIVE_METHOD);
-            $urlReqeusted  = curl_getinfo($this->curlHandle, CURLINFO_EFFECTIVE_URL);
-            $errorMessage = curl_error($this->curlHandle);
-
-            throw new Exception(sprintf(
-                'The %s request to %s failed: %s',
-                $methodUsed,
-                $urlReqeusted,
-                $errorMessage
-            ));
+            return new ResponseBasic(
+                curl_error($this->curlHandle),
+                new CodeByCurl($this->curlHandle),
+                $resposeEnded
+            );
         }
 
         return new ResponseBasic(
             $response,
-            new Code(
-                (int)curl_getinfo($this->curlHandle, CURLINFO_HTTP_CODE)
-            ),
+            new Code(curl_getinfo($this->curlHandle, CURLINFO_HTTP_CODE)),
             $resposeEnded
         );
     }
