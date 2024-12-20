@@ -19,7 +19,7 @@ use Stringable;
  * 
  * It is immutable, meaning that its value cannot be changed after it is created.
  */
-final class Code implements Stringable, Intable
+class Code implements Stringable, Intable
 {
     /**
      * The status code.
