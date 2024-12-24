@@ -18,7 +18,6 @@ use Eophantasy\Http\Response\Status\Code;
 use Eophantasy\Http\Response\Status\CodeByCurl;
 use Eophantasy\Time\Duration\Now;
 use Eophantasy\Time\Duration\Since;
-use Exception;
 
 /**
  * A class representing a cURL wrapper.
